@@ -24,6 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
+        db.execSQL(UserDAO.UPGRADE_REQUEST);
+        onCreate(db);
     }
 }

@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controler.SubscribtionActivity"></activity>
+        <activity android:name=".Controler.SubscribtionActivity" />
+        <activity android:name=".Controler.HomeActivity"></activity>
     </application>
 
 </manifest>

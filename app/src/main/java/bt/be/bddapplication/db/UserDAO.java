@@ -25,7 +25,7 @@ public class UserDAO {
             + UserDAO.COLUMN_FIRST_NAME + " TEXT NOT NULL, "
             + UserDAO.COLUMN_LAST_NAME + " TEXT NOT NULL,"
             + UserDAO.COLUMN_EMAIL + " TEXT NOT NULL,"
-            +UserDAO.COLUMN_PASSWORD + " TEXT NOT NULL" +");";
+            + UserDAO.COLUMN_PASSWORD + " TEXT NOT NULL" +");";
 
     public  static final String UPGRADE_REQUEST="DROP TABLE " + UserDAO.TABLE_USER;
 
@@ -40,6 +40,8 @@ public class UserDAO {
     public UserDAO openWritable(){
         dbHelper=new DBHelper(context);
         db=dbHelper.getWritableDatabase();
+        //dbHelper.onCreate(db);
+       //dbHelper.onUpgrade(db,1,2);
         return this;
     }
 
@@ -76,6 +78,21 @@ public class UserDAO {
         }
         else
             return null;
+    }
+//Permet de savoir si un user de ce mail existe deja dans la base de donnée.
+    public Boolean getUserByMail(String leMail){
+        //Cursor c = db.query(TABLE_USER, null, COLUMN_EMAIL + "=" + leMail, null, null, null, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE "+ COLUMN_EMAIL +"= ?", new String[]{leMail});
+        if(c.getCount()>0){
+        return false;
+        }else{return true;}
+    }
+// cette péthode permet d'authentifier le user
+    public Boolean checkUserByMail(String monMail,String monPassword){
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE "+ COLUMN_EMAIL +"= ? and " + COLUMN_PASSWORD +"= ?" , new String[]{monMail,monPassword});
+        if(c.getCount()>0){
+            return true;
+        }else{return false;}
     }
 
     public static User cursorToUser(Cursor c){

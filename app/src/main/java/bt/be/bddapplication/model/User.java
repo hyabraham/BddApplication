@@ -12,9 +12,9 @@ public class User {
     private String mdp;
 
     public User() {}
-    public User(String prenom, String nom) {
-        this.prenom=prenom;
-        this.nom=nom;
+    public User(String mail, String password) {
+        this.email=mail;
+        this.mdp=password;
     }
     public User(String prenom, String nom, String mail, String password) {
         this.prenom=prenom;
