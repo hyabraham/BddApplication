@@ -11,9 +11,8 @@ import android.widget.Toast;
 import java.security.NoSuchAlgorithmException;
 
 import bt.be.bddapplication.R;
-import bt.be.bddapplication.db.DBHelper;
-import bt.be.bddapplication.db.UserDAO;
-import bt.be.bddapplication.model.User;
+import bt.be.bddapplication.db.GestionnaireDAO;
+import bt.be.bddapplication.model.Gestionnaire;
 
 
 public class SubscribtionActivity extends AppCompatActivity {
@@ -70,8 +69,8 @@ public class SubscribtionActivity extends AppCompatActivity {
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
-                User u = new User(firstName, lastName, mail, mdpSaved);
-                UserDAO dao = new UserDAO(this);
+                Gestionnaire u = new Gestionnaire(firstName, lastName, mail, mdpSaved);
+                GestionnaireDAO dao = new GestionnaireDAO(this);
                 dao = dao.openWritable();
                 //Log.i("AVANT LE TEST", "SUIS OK AVANT TON TEST");
                 if(dao.getUserByMail(mail)) {

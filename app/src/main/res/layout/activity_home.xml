@@ -15,6 +15,17 @@
         android:id="@+id/btn_Home_Create_Art"
         android:text="@string/home_create_product"
         android:textColor="@color/colorAccent"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:onClick="gotoProduct"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_Home_Stat"
+        android:text="@string/home_stat"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/colorAccent"
+        android:onClick="gotoStat"/>
 
 </LinearLayout>

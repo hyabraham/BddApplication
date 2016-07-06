@@ -1,6 +1,5 @@
 package bt.be.bddapplication.Controler;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +10,8 @@ import android.widget.Toast;
 import java.security.NoSuchAlgorithmException;
 
 import bt.be.bddapplication.R;
-import bt.be.bddapplication.db.UserDAO;
-import bt.be.bddapplication.model.User;
+import bt.be.bddapplication.db.GestionnaireDAO;
+import bt.be.bddapplication.model.Gestionnaire;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        User u = new User(leMail, mdpToCompare);
-        UserDAO dao = new UserDAO(this);
+        Gestionnaire u = new Gestionnaire(leMail, mdpToCompare);
+        GestionnaireDAO dao = new GestionnaireDAO(this);
         dao = dao.openWritable();
         if (dao.checkUserByMail(leMail, mdpToCompare)) {
             Intent homeActivityIntent = new Intent(MainActivity.this, HomeActivity.class);

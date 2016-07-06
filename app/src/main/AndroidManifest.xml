@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controler.SubscribtionActivity" />
-        <activity android:name=".Controler.HomeActivity"></activity>
+        <activity android:name=".Controler.HomeActivity" />
+        <activity android:name=".Controler.StatActivity"></activity>
     </application>
 
 </manifest>

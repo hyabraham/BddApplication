@@ -19,12 +19,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(UserDAO.CREATE_REQUEST);
+
+        db.execSQL(GestionnaireDAO.CREATE_REQUEST);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL(UserDAO.UPGRADE_REQUEST);
+        db.execSQL(GestionnaireDAO.UPGRADE_REQUEST);
         onCreate(db);
     }
 }

@@ -3,7 +3,7 @@ package bt.be.bddapplication.model;
 /**
  * Created by rome03 on 4/07/2016.
  */
-public class User {
+public class Gestionnaire {
 
     private  int id;
     private String prenom;
@@ -11,12 +11,12 @@ public class User {
     private String email;
     private String mdp;
 
-    public User() {}
-    public User(String mail, String password) {
+    public Gestionnaire() {}
+    public Gestionnaire(String mail, String password) {
         this.email=mail;
         this.mdp=password;
     }
-    public User(String prenom, String nom, String mail, String password) {
+    public Gestionnaire(String prenom, String nom, String mail, String password) {
         this.prenom=prenom;
         this.nom=nom;
         this.email=mail;

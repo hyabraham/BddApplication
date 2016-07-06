@@ -5,12 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import bt.be.bddapplication.model.User;
+import bt.be.bddapplication.model.Gestionnaire;
 
 /**
  * Created by rome03 on 4/07/2016.
  */
-public class UserDAO {
+public class GestionnaireDAO {
 
     public static final String TABLE_USER="GESTIONNAIRE";
 
@@ -20,24 +20,24 @@ public class UserDAO {
     public static final String COLUMN_EMAIL="email";
     public static final String COLUMN_PASSWORD="mdp";
 
-    public static final String CREATE_REQUEST="CREATE TABLE "+ UserDAO.TABLE_USER
-            +"("+UserDAO.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + UserDAO.COLUMN_FIRST_NAME + " TEXT NOT NULL, "
-            + UserDAO.COLUMN_LAST_NAME + " TEXT NOT NULL,"
-            + UserDAO.COLUMN_EMAIL + " TEXT NOT NULL,"
-            + UserDAO.COLUMN_PASSWORD + " TEXT NOT NULL" +");";
+    public static final String CREATE_REQUEST="CREATE TABLE "+ GestionnaireDAO.TABLE_USER
+            +"("+ GestionnaireDAO.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + GestionnaireDAO.COLUMN_FIRST_NAME + " TEXT NOT NULL, "
+            + GestionnaireDAO.COLUMN_LAST_NAME + " TEXT NOT NULL,"
+            + GestionnaireDAO.COLUMN_EMAIL + " TEXT NOT NULL,"
+            + GestionnaireDAO.COLUMN_PASSWORD + " TEXT NOT NULL" +");";
 
-    public  static final String UPGRADE_REQUEST="DROP TABLE " + UserDAO.TABLE_USER;
+    public  static final String UPGRADE_REQUEST="DROP TABLE " + GestionnaireDAO.TABLE_USER;
 
     private DBHelper dbHelper;
     private Context context;
     private SQLiteDatabase db;
 
-    public UserDAO(Context context){
+    public GestionnaireDAO(Context context){
         this.context=context;
     }
 
-    public UserDAO openWritable(){
+    public GestionnaireDAO openWritable(){
         dbHelper=new DBHelper(context);
         db=dbHelper.getWritableDatabase();
         //dbHelper.onCreate(db);
@@ -45,7 +45,7 @@ public class UserDAO {
         return this;
     }
 
-    public UserDAO openReadable(){
+    public GestionnaireDAO openReadable(){
         dbHelper=new DBHelper(context);
         db=dbHelper.getReadableDatabase();
         return this;
@@ -56,7 +56,7 @@ public class UserDAO {
         dbHelper.close();
     }
 
-    public long createUser(User u){
+    public long createUser(Gestionnaire u){
         ContentValues cv=new ContentValues();
         cv.put(COLUMN_FIRST_NAME,u.getPrenom());
         cv.put(COLUMN_LAST_NAME,u.getNom());
@@ -65,7 +65,7 @@ public class UserDAO {
         return db.insert(TABLE_USER,null,cv);
     }
 
-    public void deleteUser(User u) {
+    public void deleteUser(Gestionnaire u) {
         db.delete(TABLE_USER, COLUMN_ID + "=" + u.getId(), null);
     }
 
@@ -95,8 +95,8 @@ public class UserDAO {
         }else{return false;}
     }
 
-    public static User cursorToUser(Cursor c){
-        User u =new User();
+    public static Gestionnaire cursorToUser(Cursor c){
+        Gestionnaire u =new Gestionnaire();
         u.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
         u.setPrenom(c.getString(c.getColumnIndex(COLUMN_FIRST_NAME)));
         u.setNom(c.getString(c.getColumnIndex(COLUMN_LAST_NAME)));
@@ -105,7 +105,7 @@ public class UserDAO {
         return u;
     }
 
-    public User getUserById(int id){
+    public Gestionnaire getUserById(int id){
 
         Cursor c =getUserCursorById(id);
 
@@ -116,7 +116,7 @@ public class UserDAO {
         }
     }
 
-    public int update(User u){
+    public int update(Gestionnaire u){
 
         ContentValues cv =new ContentValues();
         cv.put(COLUMN_FIRST_NAME,u.getPrenom());
@@ -126,7 +126,7 @@ public class UserDAO {
         return db.update(TABLE_USER,cv, COLUMN_ID + "=" + u.getId(),null);
     }
 
-    public void delete(User u){
+    public void delete(Gestionnaire u){
 
         db.delete(TABLE_USER,COLUMN_ID + "=" + u.getId(),null);
     }
