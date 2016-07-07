@@ -1,6 +1,7 @@
 package bt.be.bddapplication.Controler;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import java.security.NoSuchAlgorithmException;
 
 import bt.be.bddapplication.R;
+import bt.be.bddapplication.db.DBHelper;
 import bt.be.bddapplication.db.GestionnaireDAO;
 import bt.be.bddapplication.model.Gestionnaire;
 
@@ -49,5 +51,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "E-mail and Password not matching", Toast.LENGTH_SHORT).show();
 
         }
+        dao.close();
     }
 }

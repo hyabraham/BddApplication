@@ -1,6 +1,10 @@
 package bt.be.bddapplication.model;
 
+import android.util.ArrayMap;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by rome03 on 6/07/2016.
@@ -9,18 +13,21 @@ public class Frigo {
     private int idFrigo;
     private String nomFrigo;
     private String localisationFrigo;
-    private double temperature;
+    private float temperature;
     private Date dateCreationFrigo;
+    private int idGestionnaire;
     private Gestionnaire gestionnaireFrigo;
+    private ArrayMap<String, Integer> listProduit;
 
     public Frigo(){}
-    public Frigo(int id,String nomF,String localite, double temp,Date dateCreation,Gestionnaire gestF){
+    public Frigo(int id,String nomF,String localite, float temp,Date dateCreation,Gestionnaire gestF){
         this.idFrigo=id;
         this.nomFrigo=nomF;
         this.localisationFrigo=localite;
         this.temperature=temp;
         this.dateCreationFrigo=dateCreation;
         this.gestionnaireFrigo=gestF;
+      //  listProduit.put(gestF.getNom(),qtt);
     }
 
     public int getIdFrigo() {
@@ -46,21 +53,23 @@ public class Frigo {
     public void setLocalisationFrigo(String localisationFrigo) {
         this.localisationFrigo = localisationFrigo;
     }
+    public void setTemperature(float temperature) {
+        this.temperature = temperature;
+    }
 
-    public double getTemperature() {
+    public float getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
-    }
+
 
     public Date getDateCreationFrigo() {
         return dateCreationFrigo;
     }
 
-    public void setDateCreationFrigo(Date dateCreationFrigo) {
-        this.dateCreationFrigo = dateCreationFrigo;
+    public void setDateCreationFrigo(String dateCreationFrigo) {
+        Date datecreation=new Date(dateCreationFrigo);
+        this.dateCreationFrigo = datecreation;
     }
 
     public Gestionnaire getGestionnaireFrigo() {
@@ -69,5 +78,13 @@ public class Frigo {
 
     public void setGestionnaireFrigo(Gestionnaire gestionnaireFrigo) {
         this.gestionnaireFrigo = gestionnaireFrigo;
+    }
+
+    public int getIdGestionnaire() {
+        return idGestionnaire;
+    }
+
+    public void setIdGestionnaire(int idGestionnaire) {
+        this.idGestionnaire = getGestionnaireFrigo().getId();
     }
 }

@@ -65,8 +65,8 @@ public class GestionnaireDAO {
         return db.insert(TABLE_USER,null,cv);
     }
 
-    public void deleteUser(Gestionnaire u) {
-        db.delete(TABLE_USER, COLUMN_ID + "=" + u.getId(), null);
+    public void deleteGestionaire(Gestionnaire gestionnaire) {
+        db.delete(TABLE_USER, COLUMN_ID + "=" + gestionnaire.getId(), null);
     }
 
     public Cursor getUserCursorById(int userId) {
@@ -126,9 +126,9 @@ public class GestionnaireDAO {
         return db.update(TABLE_USER,cv, COLUMN_ID + "=" + u.getId(),null);
     }
 
-    public void delete(Gestionnaire u){
-
-        db.delete(TABLE_USER,COLUMN_ID + "=" + u.getId(),null);
-    }
+//    public void delete(Gestionnaire u){
+//
+//        db.delete(TABLE_USER,COLUMN_ID + "=" + u.getId(),null);
+//    }
 
 }
