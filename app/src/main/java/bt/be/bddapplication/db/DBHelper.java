@@ -37,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(FrigoDAO.UPGRADE_REQUEST_PRODUIT_FRIGO);
         db.execSQL(ProduitDAO.UPGRADE_REQUEST);
         db.execSQL(Mouvement_Stock_DAO.UPGRADE_REQUEST_MOUVEMENT_STOCK);
-        db.execSQL(Mouvement_Stock_DAO.UPGRADE_REQUEST_MOUVEMENT_PRODUIT);
+        db.execSQL(Mouvement_Stock_DAO.UPGRADE_REQUEST_PRODUIT_MOUVEMENT);
         onCreate(db);
     }
 }

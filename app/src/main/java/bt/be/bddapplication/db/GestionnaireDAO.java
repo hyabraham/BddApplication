@@ -87,12 +87,23 @@ public class GestionnaireDAO {
         return false;
         }else{return true;}
     }
+
 // cette péthode permet d'authentifier le user
     public Boolean checkUserByMail(String monMail,String monPassword){
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE "+ COLUMN_EMAIL +"= ? and " + COLUMN_PASSWORD +"= ?" , new String[]{monMail,monPassword});
         if(c.getCount()>0){
             return true;
         }else{return false;}
+    }
+    public Cursor getGestionaire(){
+
+        Cursor c = db.rawQuery("SELECT " + COLUMN_FIRST_NAME +"," + COLUMN_LAST_NAME +" FROM " + TABLE_USER,null);
+        if(c.getCount()>0){
+            c.moveToFirst();
+            return c;
+        }
+        else
+        return  null;
     }
 
     public static Gestionnaire cursorToUser(Cursor c){

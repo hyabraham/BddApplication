@@ -12,10 +12,12 @@ public class Gestionnaire {
     private String mdp;
 
     public Gestionnaire() {}
+
     public Gestionnaire(String mail, String password) {
         this.email=mail;
         this.mdp=password;
     }
+
     public Gestionnaire(String prenom, String nom, String mail, String password) {
         this.prenom=prenom;
         this.nom=nom;

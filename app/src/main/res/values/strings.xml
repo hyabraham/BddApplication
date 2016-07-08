@@ -10,6 +10,20 @@
     <string name="user_login">Login</string>
     <string name="user_cansel_register">Cancel</string>
     <string name="user_register">Register</string>
+    <string name="home_mouvement">Mouvement of Stock</string>
+    <string name="home_config">Configuration</string>
     <string name="home_create_product">Create product</string>
+    <string name="home_create_provider">Create Provider</string>
+    <string name="home_create_frigo">create Fridge</string>
+    <string name="home_search">Search</string>
     <string name="home_stat">Statistics</string>
+    <string name="provider_name">Name</string>
+    <string name="provider_adresse">Adress</string>
+    <string name="create">Create</string>
+    <string name="libelle">Wording</string>
+    <string name="localisation">Location</string>
+    <string name="temperature">Temperature</string>
+    <string name="date">Date</string>
+    <string name="gestionnaire_frigo">Create by</string>
+    <string name="gest_frigo">Select the manager</string>
 </resources>

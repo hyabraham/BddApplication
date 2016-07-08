@@ -17,7 +17,9 @@
         </activity>
         <activity android:name=".Controler.SubscribtionActivity" />
         <activity android:name=".Controler.HomeActivity" />
-        <activity android:name=".Controler.StatActivity"></activity>
+        <activity android:name=".Controler.StatActivity" />
+        <activity android:name=".Controler.CreateProviderActivity" />
+        <activity android:name=".Controler.CreateFrigoActivity"></activity>
     </application>
 
 </manifest>

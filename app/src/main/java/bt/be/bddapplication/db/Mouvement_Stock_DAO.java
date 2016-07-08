@@ -31,14 +31,14 @@ public class Mouvement_Stock_DAO {
 
     public static final String CREATE_REQUEST_PRODUIT_MOUVEMENT="CREATE TABLE "+ Mouvement_Stock_DAO.TABLE_PORTE_SUR
             + "(" + Mouvement_Stock_DAO.COLUMN_QTE_MOUVEMENT + " INTEGER NOT NULL ,"
-            + ProduitDAO.COLUMN_ID + " INTEGER NOT NULL"
-            + " FOREIGN KEY ("  + ProduitDAO.COLUMN_ID +") REFERENCES  "+ ProduitDAO.TABLE_PRODUIT + "(" +ProduitDAO.COLUMN_ID +"),"
-            + Mouvement_Stock_DAO.COLUMN_ID_MOUVEMENT + " INTEGER NOT NULL" +
-            " FOREIGN KEY (" + Mouvement_Stock_DAO.COLUMN_ID_MOUVEMENT +") REFERENCES "+ Mouvement_Stock_DAO.TABLE_MOUVEMENT_STOCK + "(" + Mouvement_Stock_DAO.COLUMN_ID_MOUVEMENT + "),"
-            + "PRIMARY KEY ("+ ProduitDAO.COLUMN_ID +" , "+ Mouvement_Stock_DAO.COLUMN_ID_MOUVEMENT+ ")" + ");";
+            + ProduitDAO.COLUMN_ID +" INTEGER, "
+            + Mouvement_Stock_DAO.COLUMN_ID_MOUVEMENT + " INTEGER,"
+            + "FOREIGN KEY ("+ ProduitDAO.COLUMN_ID +") REFERENCES  "+ ProduitDAO.TABLE_PRODUIT + "(" +ProduitDAO.COLUMN_ID +"),"
+            +" FOREIGN KEY ("+ Mouvement_Stock_DAO.COLUMN_ID_MOUVEMENT +") REFERENCES "+ Mouvement_Stock_DAO.TABLE_MOUVEMENT_STOCK + "(" + Mouvement_Stock_DAO.COLUMN_ID_MOUVEMENT + ")"
+            + "PRIMARY KEY ("+ ProduitDAO.COLUMN_ID +" ,"+ Mouvement_Stock_DAO.COLUMN_ID_MOUVEMENT+ ")" + ");";
 
     public  static final String UPGRADE_REQUEST_MOUVEMENT_STOCK="DROP TABLE " + Mouvement_Stock_DAO.TABLE_MOUVEMENT_STOCK;
-    public  static final String UPGRADE_REQUEST_MOUVEMENT_PRODUIT="DROP TABLE " + Mouvement_Stock_DAO.TABLE_PORTE_SUR;
+    public  static final String UPGRADE_REQUEST_PRODUIT_MOUVEMENT="DROP TABLE " + Mouvement_Stock_DAO.TABLE_PORTE_SUR;
 
     private DBHelper dbHelper;
     private Context context;

@@ -36,17 +36,31 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_userLogin"
             android:text="@string/user_login"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_gravity="center"
             android:onClick="logUser"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_gravity="center"
+            android:text="  or  "/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_userSubscribe"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/user_register"
             android:layout_gravity="center"
             android:onClick="userRegister"/>
+
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/imagehome"
+        />
 
 
 </LinearLayout>

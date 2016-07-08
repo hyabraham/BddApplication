@@ -53,14 +53,14 @@ public class FournisseurDAO {
         dbHelper.close();
     }
 
-    public long createUser(Fournisseur f){
+    public long createFournisser(Fournisseur f){
         ContentValues cv=new ContentValues();
         cv.put(COLUMN_NAME,f.getNomFss());
         cv.put(COLUMN_EMAIL,f.getEmailFss());
         cv.put(COLUMN_ADRESSE,f.getAdresseFss());
         return db.insert(TABLE_FOURNISSEUR,null,cv);
     }
-    public void deleteUser(Fournisseur f) {
+    public void deleteFournisseur(Fournisseur f) {
         db.delete(TABLE_FOURNISSEUR, COLUMN_ID + "=" + f.getIdFss(), null);
     }
 
@@ -90,7 +90,7 @@ public class FournisseurDAO {
         return f;
     }
 
-    public Fournisseur getUserById(int id){
+    public Fournisseur getFournisseurById(int id){
 
         Cursor c =getFssCursorById(id);
 

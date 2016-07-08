@@ -8,62 +8,64 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context=".Controler.SubscribtionActivity">
+    android:background="#89B9DA"
+    tools:context="bt.be.bddapplication.Controler.CreateFrigoActivity">
 
-     <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="@string/user_fname"
-       android:paddingBottom="10dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt_userFirstName"
-        android:paddingBottom="5dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/user_lname"
-        android:paddingBottom="10dp"/>
+        android:id="@+id/tv_libelle"
+        style="@style/MyDisplay"
+        android:text="@string/libelle"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_userLastName"
-        android:paddingBottom="5dp"/>
+        android:id="@+id/txt_libelle_frigo"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/user_email"
-        android:paddingBottom="10dp"/>
+        android:id="@+id/tv_localisation"
+        style="@style/MyDisplay"
+        android:text="@string/localisation"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:id="@+id/txt_userMail"
-        android:paddingBottom="5dp"/>
+        android:id="@+id/txt_localisation_frigo"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/user_password"
-        android:paddingBottom="10dp"/>
+        android:id="@+id/tv_temperature"
+        style="@style/MyDisplay"
+        android:text="@string/temperature"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:id="@+id/txt_userPassword"
-        android:paddingBottom="5dp"/>
+        android:id="@+id/txt_temperature_frigo"
+        android:inputType="number"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/user_repassorwd"
-        android:paddingBottom="10dp"/>
+        android:id="@+id/tv_date"
+        style="@style/MyDisplay"
+        android:text="@string/date"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:id="@+id/txt_userRePassword"
-        android:paddingBottom="15dp"/>
+        android:id="@+id/txt_date_creation_frigo"
+        android:inputType="date"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_create_by"
+        style="@style/MyDisplay"
+        android:text="@string/gestionnaire_frigo"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spiner_gestionnaire_frigo"
+        android:prompt="@string/gest_frigo">
 
+    </Spinner>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,17 +73,22 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_userLogin"
-            android:text="@string/user_register"
+            android:id="@+id/btn_create_frigo"
+            android:text="@string/create"
             android:layout_gravity="center"
-            android:onClick="userRegister"/>
+            android:layout_marginTop="20dp"
+            android:background="#E80A54"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_userSubscribe"
+            android:id="@+id/btn_cancel_create_frigo"
             android:text="@string/user_cansel_register"
             android:layout_gravity="center"
-            android:onClick="userCancelRegister"/>
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:background="#E80A54"/>
+
     </LinearLayout>
+
 
 </LinearLayout>

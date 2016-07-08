@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.security.NoSuchAlgorithmException;
@@ -17,16 +18,27 @@ import bt.be.bddapplication.model.Gestionnaire;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    Bundle extra;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        extra = intent.getExtras();
+        if(extra!=null){
+            String leMail= extra.getString("Mail");
+            TextView t=(TextView)findViewById(R.id.txt_userName);
+            t.setText(leMail);
+        }
     }
 
     public void userRegister(View v) {
 
         Intent registerIntent = new Intent(MainActivity.this, SubscribtionActivity.class);
         startActivity(registerIntent);
+
     }
 
     public void logUser(View v) {

@@ -1,6 +1,7 @@
 package bt.be.bddapplication.Controler;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -78,11 +79,16 @@ public class SubscribtionActivity extends AppCompatActivity {
                     Log.i("USER CREATED ", "OK");
                     //Log.i("LE MD5",mdpSaved);
                     dao.close();
+                    //Les 3 lignes qui suivent me permettent de recuperer le mail pour l'afficher a la page de connexion
+                    Intent intentSaveMail=new Intent(this,MainActivity.class);
+                    intentSaveMail.putExtra("Mail",mail);
+                    startActivity(intentSaveMail);
                 }else{
                     Toast.makeText(SubscribtionActivity.this, "This mail adress is already exist please change", Toast.LENGTH_SHORT).show();
                 }
             }else {
                 Toast.makeText(SubscribtionActivity.this, messagePasswordFailled, Toast.LENGTH_SHORT).show();
+                password1.setBackgroundColor(Color.RED);
             }
             } else {
                 Toast.makeText(SubscribtionActivity.this, messageMailFail, Toast.LENGTH_SHORT).show();
