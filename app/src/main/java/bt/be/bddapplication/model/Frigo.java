@@ -20,14 +20,13 @@ public class Frigo {
     private ArrayMap<String, Integer> listProduit;
 
     public Frigo(){}
-    public Frigo(int id,String nomF,String localite, float temp,Date dateCreation,Gestionnaire gestF){
-        this.idFrigo=id;
+    public Frigo(String nomF,String localite, float temp,Date dateCreation,int idGest){
+
         this.nomFrigo=nomF;
         this.localisationFrigo=localite;
         this.temperature=temp;
         this.dateCreationFrigo=dateCreation;
-        this.gestionnaireFrigo=gestF;
-      //  listProduit.put(gestF.getNom(),qtt);
+        this.idGestionnaire=idGest;
     }
 
     public int getIdFrigo() {

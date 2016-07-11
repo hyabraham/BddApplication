@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test BDD</string>
+    <string name="app_name">Gestock</string>
     <string name="user_fname">FirstName</string>
     <string name="user_lname">LastName</string>
     <string name="user_password">Password</string>
@@ -26,4 +26,9 @@
     <string name="date">Date</string>
     <string name="gestionnaire_frigo">Create by</string>
     <string name="gest_frigo">Select the manager</string>
+    <string name="libelle_produit">product label</string>
+    <string name="description_produit">Product description</string>
+    <string name="date_livraison">Delivery date</string>
+    <string name="date_expiration">Expiration date</string>
+    <string name="fournisseur">Supplier</string>
 </resources>

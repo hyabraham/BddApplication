@@ -21,7 +21,7 @@ public class FournisseurDAO {
     public static final String COLUMN_ADRESSE="adresseFss";
 
     public static final String CREATE_REQUEST="CREATE TABLE "+ FournisseurDAO.TABLE_FOURNISSEUR
-            +"("+ GestionnaireDAO.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            +"("+ FournisseurDAO.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + FournisseurDAO.COLUMN_NAME + " TEXT NOT NULL, "
             + FournisseurDAO.COLUMN_EMAIL + " TEXT NOT NULL,"
             + FournisseurDAO.COLUMN_ADRESSE + " TEXT NOT NULL" +");";
@@ -74,6 +74,14 @@ public class FournisseurDAO {
         else
             return null;
     }
+    public Cursor getFournisseur(){
+        Cursor c = db.rawQuery("SELECT " + COLUMN_ID + " , " + COLUMN_NAME + " FROM " + FournisseurDAO.TABLE_FOURNISSEUR,null);
+        if(c.getCount()>0){
+            c.moveToFirst();
+            return c;
+        }else
+            return null;
+    }
 
     public Boolean getFssByMail(String leMail){
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_FOURNISSEUR + " WHERE "+ COLUMN_EMAIL +"= ?", new String[]{leMail});
@@ -81,6 +89,8 @@ public class FournisseurDAO {
             return false;
         }else{return true;}
     }
+
+
     public static Fournisseur cursorToUser(Cursor c){
         Fournisseur f =new Fournisseur();
         f.setIdFss(c.getInt(c.getColumnIndex(COLUMN_ID)));

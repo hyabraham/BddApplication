@@ -8,92 +8,82 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:background="#89B9DA"
-    tools:context="bt.be.bddapplication.Controler.CreateFrigoActivity">
-
+    tools:context="bt.be.bddapplication.Controler.CreateProductActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_libelle"
+        android:id="@+id/tv_product_libelle"
+        android:text="@string/libelle_produit"
         style="@style/MyDisplay"
-        android:text="@string/libelle"/>
+        android:layout_marginTop="8dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_libelle_frigo"/>
+        android:id="@+id/txt_libelle_produit"
+        android:inputType="text"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_description"
+        android:text="@string/description_produit"
+        style="@style/MyDisplay"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_description_product"
+        android:inputType="text"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_localisation"
+        android:id="@+id/tv_date_livraison"
         style="@style/MyDisplay"
-        android:text="@string/localisation"/>
+        android:text="@string/date_livraison"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_localisation_frigo"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_temperature"
-        style="@style/MyDisplay"
-        android:text="@string/temperature"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt_temperature_frigo"
-        android:inputType="numberSigned"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_date"
-        style="@style/MyDisplay"
-        android:text="@string/date"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt_date_creation_frigo"
+        android:id="@+id/txt_date_livraison"
         android:inputType="date"/>
-    <!--<TextView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_create_by"
-        style="@style/MyDisplay"
-        android:text="@string/gestionnaire_frigo"/> -->
-   <!-- <Spinner
+        android:text="@string/date_expiration"
+        style="@style/MyDisplay"/>
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spiner_gestionnaire_frigo"
-        android:prompt="@string/gest_frigo">
+        android:id="@+id/txt_date_expiration"
+        android:inputType="date"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fournisseur"
+        style="@style/MyDisplay"/>
 
-    </Spinner> -->
-    <LinearLayout
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spiner_fournisseur_produit"
+        android:layout_marginEnd="32dp">
+
+    </Spinner>
+       <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_create_frigo"
             android:text="@string/create"
             style="@style/MyButtonProject"
-            android:onClick="createFridge"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="32dp"
+            android:id="@+id/btn_create_product"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_cancel_create_frigo"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
             android:text="@string/user_cansel_register"
-            style="@style/MyButtonProject"
-            android:onClick="cancelCreateFridge"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-           />
-
-
+            style="@style/MyButtonProject"/>
     </LinearLayout>
 
 

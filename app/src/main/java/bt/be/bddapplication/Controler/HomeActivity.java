@@ -34,7 +34,9 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent fridgeIntent = new Intent(HomeActivity.this, CreateFrigoActivity.class);
         startActivity(fridgeIntent);
-
-
+    }
+    public void gotoProduct(View v){
+        Intent productIntent = new Intent(HomeActivity.this, CreateProductActivity.class);
+        startActivity(productIntent);
     }
 }

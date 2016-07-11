@@ -46,6 +46,8 @@ public class SubscribtionActivity extends AppCompatActivity {
 
         String messageMailFail="Please enter a valid adress mail";
         String messagePasswordFailled="Password 1 is different to password 2";
+        String messageEmailAlreadyExist= "This mail adress is already exist please change";
+        String messageName ="User with same FirstName and Last Name is already exist !!!";
 
         EditText fname=(EditText)findViewById(R.id.txt_userFirstName);
         EditText lname=(EditText)findViewById(R.id.txt_userLastName);
@@ -74,7 +76,9 @@ public class SubscribtionActivity extends AppCompatActivity {
                 GestionnaireDAO dao = new GestionnaireDAO(this);
                 dao = dao.openWritable();
                 //Log.i("AVANT LE TEST", "SUIS OK AVANT TON TEST");
+
                 if(dao.getUserByMail(mail)) {
+                    if(dao.getUserByName(lastName.toUpperCase())){
                     dao.createUser(u);
                     Log.i("USER CREATED ", "OK");
                     //Log.i("LE MD5",mdpSaved);
@@ -83,8 +87,11 @@ public class SubscribtionActivity extends AppCompatActivity {
                     Intent intentSaveMail=new Intent(this,MainActivity.class);
                     intentSaveMail.putExtra("Mail",mail);
                     startActivity(intentSaveMail);
+                    }else{
+                        Toast.makeText(SubscribtionActivity.this, messageName, Toast.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Toast.makeText(SubscribtionActivity.this, "This mail adress is already exist please change", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SubscribtionActivity.this, messageEmailAlreadyExist, Toast.LENGTH_SHORT).show();
                 }
             }else {
                 Toast.makeText(SubscribtionActivity.this, messagePasswordFailled, Toast.LENGTH_SHORT).show();

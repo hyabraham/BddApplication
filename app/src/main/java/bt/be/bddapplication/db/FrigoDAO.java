@@ -102,7 +102,7 @@ public class FrigoDAO {
         return f;
     }
 
-    public Frigo getProduitById(int id){
+    public Frigo getFrigoById(int id){
 
         Cursor c =getFrigoCursorById(id);
 

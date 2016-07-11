@@ -17,6 +17,7 @@
         android:id="@+id/txt_userName"
         android:hint="@string/hint_username"
         android:padding="10dp"
+        android:inputType="textEmailAddress"
         android:layout_gravity="center"/>
 
     <EditText

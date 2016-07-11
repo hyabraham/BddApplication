@@ -1,59 +1,107 @@
 package bt.be.bddapplication.Controler;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import bt.be.bddapplication.R;
+import bt.be.bddapplication.db.FrigoDAO;
 import bt.be.bddapplication.db.GestionnaireDAO;
+import bt.be.bddapplication.model.Frigo;
 
 public class CreateFrigoActivity extends AppCompatActivity {
+
+    Bundle extra;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_frigo);
+    }
 
-        Spinner monSpinner=(Spinner)findViewById(R.id.spiner_gestionnaire_frigo);
-
-        //  Gestionnaire f = new Gestionnaire(nom, mailProvider,adressProvider);
-        GestionnaireDAO dao =new GestionnaireDAO(this);
+    public void creerFrigo(Frigo f){
+        FrigoDAO dao =new FrigoDAO(this);
         dao.openWritable();
-        Cursor c =dao.getGestionaire();
-        List<String> gestionnaires = new ArrayList<String>();
-        do {
-            gestionnaires.add(c.getString(c.getColumnIndex(GestionnaireDAO.COLUMN_LAST_NAME))
-                    + " "+ c.getString(c.getColumnIndex(GestionnaireDAO.COLUMN_FIRST_NAME)));
-        }while (c.moveToNext());
+        dao.createFrigo(f);
+        Log.i("CREATION Frigo ", "OK");
+
         dao.close();
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, gestionnaires);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        monSpinner.setAdapter(dataAdapter);
     }
+    public void createFridge(View v){
 
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        Spinner monSpinner=(Spinner)findViewById(R.id.spiner_gestionnaire_frigo);
-        monSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-                Log.i("la selection est : ", item);
+
+        String messageDateVide="Please enter a date";
+        String messageTemperetureVide="Please enter et Temperature";
+        String messageLocalisationVide="Please enter a localisation";
+        String messageLibelleVide="Please enter a wording";
+
+        EditText libelleFrigo=(EditText)findViewById(R.id.txt_libelle_frigo);
+        EditText localisationFrigo=(EditText)findViewById(R.id.txt_localisation_frigo);
+        EditText temperatureFrigo=(EditText)findViewById(R.id.txt_temperature_frigo);
+        EditText dateCreationFrigo=(EditText)findViewById(R.id.txt_date_creation_frigo);
+        String libelle,localisation,dateCreation,temp;
+        float temperature;
+
+        libelle=libelleFrigo.getText().toString();
+        localisation=localisationFrigo.getText().toString();
+        dateCreation=dateCreationFrigo.getText().toString();
+        temp=temperatureFrigo.getText().toString();
+        temperature=Float.parseFloat(temp);
+        GestionnaireDAO dao1=new GestionnaireDAO(this);
+
+        if(libelle!=""){
+            if(localisation!=""){
+                if(temp!=""){
+                    if(dateCreation!=""){
+
+                        SharedPreferences  prefs_ID= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        int idGest=prefs_ID.getInt("id",0);
+                        Log.e("ID_GEST", Integer.toString(idGest));
+                        Frigo f = new Frigo(libelle, localisation,temperature, new Date(dateCreation),idGest);
+
+                        creerFrigo(f);
+
+                        libelleFrigo.setText("");
+                        localisationFrigo.setText("");
+                        temperatureFrigo.setText("");
+                        dateCreationFrigo.setText("");
+                    }else {
+                        Toast.makeText(CreateFrigoActivity.this, messageDateVide, Toast.LENGTH_SHORT).show();
+                        dateCreationFrigo.setBackgroundColor(Color.RED);
+                    }
+                }else{
+                    Toast.makeText(CreateFrigoActivity.this, messageTemperetureVide, Toast.LENGTH_SHORT).show();
+                    temperatureFrigo.setBackgroundColor(Color.RED);
+                }
+            }else {
+                Toast.makeText(CreateFrigoActivity.this, messageLocalisationVide, Toast.LENGTH_SHORT).show();
+                localisationFrigo.setBackgroundColor(Color.RED);
             }
-        });
-        //String item = parent.getItemAtPosition(position).toString();
+        }else{
+            Toast.makeText(CreateFrigoActivity.this, messageLibelleVide, Toast.LENGTH_SHORT).show();
+            libelleFrigo.setBackgroundColor(Color.RED);
+        }
 
-        // Showing selected spinner item
-        //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
+    public void cancelCreateFridge(View v){
+        Intent homeIntent = new Intent(CreateFrigoActivity.this,HomeActivity.class);
+        startActivity(homeIntent);
+    }
+
 }

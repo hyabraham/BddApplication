@@ -19,7 +19,8 @@
         <activity android:name=".Controler.HomeActivity" />
         <activity android:name=".Controler.StatActivity" />
         <activity android:name=".Controler.CreateProviderActivity" />
-        <activity android:name=".Controler.CreateFrigoActivity"></activity>
+        <activity android:name=".Controler.CreateFrigoActivity" />
+        <activity android:name=".Controler.CreateProductActivity"></activity>
     </application>
 
 </manifest>

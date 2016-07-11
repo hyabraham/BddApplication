@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import bt.be.bddapplication.model.Gestionnaire;
 
@@ -87,6 +88,13 @@ public class GestionnaireDAO {
         return false;
         }else{return true;}
     }
+//Permet de voir si deux gestionnaires ont le même nom de famille car nous voulons éviter cela.
+    public Boolean getUserByName(String lname){
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE " + COLUMN_LAST_NAME.toUpperCase() +" = ?", new String[]{lname});
+        if(c.getCount()>0){
+            return false;
+        }else{return true;}
+    }
 
 // cette péthode permet d'authentifier le user
     public Boolean checkUserByMail(String monMail,String monPassword){
@@ -95,15 +103,27 @@ public class GestionnaireDAO {
             return true;
         }else{return false;}
     }
-    public Cursor getGestionaire(){
+    public Cursor getGestionaire(String mail){
 
-        Cursor c = db.rawQuery("SELECT " + COLUMN_FIRST_NAME +"," + COLUMN_LAST_NAME +" FROM " + TABLE_USER,null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE " + COLUMN_EMAIL + "= ? ",new String[]{mail});
         if(c.getCount()>0){
             c.moveToFirst();
             return c;
         }
         else
         return  null;
+    }
+    public int getGestionnaireID(String leMail){
+        Cursor c = db.rawQuery("SELECT " + COLUMN_ID +" FROM " + TABLE_USER + " WHERE " + COLUMN_EMAIL +" = ?",new String[]{leMail});
+        if(c.getCount()>0){
+            Log.i("Count Sup à  0","SUIS la");
+            c.moveToFirst();
+            int id=c.getInt(c.getColumnIndex(COLUMN_ID));
+            Log.i("Valeur de id" , ""+ id);
+            return id;
+        }
+        else
+            return  0;
     }
 
     public static Gestionnaire cursorToUser(Cursor c){

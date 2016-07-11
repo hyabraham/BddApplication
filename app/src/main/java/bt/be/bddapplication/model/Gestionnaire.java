@@ -1,5 +1,9 @@
 package bt.be.bddapplication.model;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by rome03 on 4/07/2016.
  */
@@ -18,7 +22,15 @@ public class Gestionnaire {
         this.mdp=password;
     }
 
+    public Gestionnaire(int id, String prenom, String nom, String mail, String password) {
+        this.id=id;
+        this.prenom=prenom;
+        this.nom=nom;
+        this.email=mail;
+        this.mdp=password;
+    }
     public Gestionnaire(String prenom, String nom, String mail, String password) {
+
         this.prenom=prenom;
         this.nom=nom;
         this.email=mail;
@@ -70,4 +82,23 @@ public class Gestionnaire {
         return String.format("[%s] %s %s - %s", id, nom, prenom, email);
     }
 
+    public HashMap<String, String> toHashMap(){
+        HashMap<String, String> listAttribut = new HashMap<>();
+
+        listAttribut.put("id", Integer.toString(this.getId()));
+        listAttribut.put("prenom", this.getPrenom());
+        listAttribut.put("nom", this.getNom());
+        listAttribut.put("email", this.getEmail());
+        listAttribut.put("mdp", this.getMdp());
+
+        return listAttribut;
+    }
+
+    public HashMap<Gestionnaire, String>  userToHashMap(){
+        HashMap<Gestionnaire, String> listAttribut = new HashMap<>();
+
+        listAttribut.put(this, toString());
+
+        return listAttribut;
+    }
 }
