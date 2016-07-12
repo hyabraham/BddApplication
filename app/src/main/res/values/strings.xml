@@ -31,4 +31,10 @@
     <string name="date_livraison">Delivery date</string>
     <string name="date_expiration">Expiration date</string>
     <string name="fournisseur">Supplier</string>
+    <string name="qteseuil">threshold quantity </string>
+    <string name="motif_mouvement">Justification</string>
+    <string name="frigo">Fridge</string>
+    <string name="qte">Quantity</string>
+    <string name="valider">Validate</string>
+
 </resources>

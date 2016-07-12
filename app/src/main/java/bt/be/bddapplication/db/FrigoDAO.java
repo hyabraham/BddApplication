@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import bt.be.bddapplication.model.Frigo;
-import bt.be.bddapplication.model.Gestionnaire;
 
 /**
  * Created by rome03 on 7/07/2016.
@@ -18,7 +17,7 @@ public class FrigoDAO {
 
     public static final String COLUMN_ID="IDFrigo";
     public static final String COLUMN_ID_Gestionnaire="IDGestionnaire";
-    public static final String COLUMN_Nom_Frigo="NomFrigo";
+    public static final String COLUMN_NOM_FRIGO ="NomFrigo";
     public static final String COLUMN_LOCALISATION_FRIGO="Localisation";
     public static final String COLUMN_TEMP_FRIGO="TemperatureFrigo";
     public static final String COLUMN_QTE_STOCK="Qte_en_Stock";
@@ -26,7 +25,7 @@ public class FrigoDAO {
 
     public static final String CREATE_REQUEST_FRIGO=" CREATE TABLE  " + FrigoDAO.TABLE_FRIGO
             + "("  + FrigoDAO.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + FrigoDAO.COLUMN_Nom_Frigo + " TEXT NOT NULL, "
+            + FrigoDAO.COLUMN_NOM_FRIGO + " TEXT NOT NULL, "
             + FrigoDAO.COLUMN_LOCALISATION_FRIGO + " TEXT NOT NULL,"
             + FrigoDAO.COLUMN_TEMP_FRIGO + " FLOAT NOT NULL,"
             + FrigoDAO.COLUMN_DATE_CREATION + " TEXT NOT NULL,"
@@ -70,7 +69,7 @@ public class FrigoDAO {
 
     public long createFrigo(Frigo f){
         ContentValues cv=new ContentValues();
-        cv.put(COLUMN_Nom_Frigo,f.getNomFrigo());
+        cv.put(COLUMN_NOM_FRIGO,f.getNomFrigo());
         cv.put(COLUMN_LOCALISATION_FRIGO,f.getLocalisationFrigo());
         cv.put(COLUMN_TEMP_FRIGO,f.getTemperature());
         cv.put(COLUMN_DATE_CREATION,f.getDateCreationFrigo().toString());
@@ -91,10 +90,19 @@ public class FrigoDAO {
             return null;
     }
 
+    public Cursor getFrigo(){
+        Cursor c = db.rawQuery("SELECT " + FrigoDAO.COLUMN_ID + " , " + COLUMN_NOM_FRIGO + " FROM " + FournisseurDAO.TABLE_FOURNISSEUR,null);
+        if(c.getCount()>0){
+            c.moveToFirst();
+            return c;
+        }else
+            return null;
+    }
+
     public static Frigo cursorToFrigo(Cursor c){
         Frigo f =new Frigo();
         f.setIdFrigo(c.getInt(c.getColumnIndex(COLUMN_ID)));
-        f.setNomFrigo(c.getString(c.getColumnIndex(COLUMN_Nom_Frigo)));
+        f.setNomFrigo(c.getString(c.getColumnIndex(COLUMN_NOM_FRIGO)));
         f.setLocalisationFrigo(c.getString(c.getColumnIndex(COLUMN_LOCALISATION_FRIGO)));
         f.setTemperature(c.getFloat(c.getColumnIndex(COLUMN_TEMP_FRIGO)));
         f.setDateCreationFrigo(c.getString(c.getColumnIndex(COLUMN_DATE_CREATION)));
@@ -116,7 +124,7 @@ public class FrigoDAO {
     public int update(Frigo f){
 
         ContentValues cv =new ContentValues();
-        cv.put(COLUMN_Nom_Frigo,f.getNomFrigo());
+        cv.put(COLUMN_NOM_FRIGO,f.getNomFrigo());
         cv.put(COLUMN_LOCALISATION_FRIGO,f.getLocalisationFrigo());
         cv.put(COLUMN_TEMP_FRIGO,f.getTemperature());
         cv.put(COLUMN_DATE_CREATION,f.getDateCreationFrigo().toString());

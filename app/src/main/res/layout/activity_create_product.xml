@@ -35,6 +35,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/qteseuil"
+        style="@style/MyDisplay"
+        android:id="@+id/tv_qte_seuil"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_qte_seuil"
+        android:inputType="number"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_date_livraison"
         style="@style/MyDisplay"
         android:text="@string/date_livraison"/>
@@ -74,6 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create"
+            android:onClick="createProduct"
             style="@style/MyButtonProject"
             android:layout_marginTop="32dp"
             android:id="@+id/btn_create_product"/>

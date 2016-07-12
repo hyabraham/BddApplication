@@ -12,16 +12,17 @@ public class Produit {
     private Date datePeremptionProduit;
     private Date dateLivraisonProduit;
     private int qteSeuil;
-    private int idFss;
+    private int idFournisseur;
     private Fournisseur fournisseurProduit;
 
     public Produit(){}
 
-    public Produit(int id, String libelle, String description, Date dateperemption, int seuil){
-        this.idProduit=id;
+    public Produit(int id, String libelle, String description, Date dateLiv,Date dateperemption, int seuil){
+        this.idFournisseur=id;
         this.libelleProduit=libelle;
         this.descriptionProduit=description;
         this.datePeremptionProduit=dateperemption;
+        this.dateLivraisonProduit=dateLiv;
         this.qteSeuil=seuil;
     }
 
@@ -83,12 +84,12 @@ public class Produit {
         this.fournisseurProduit = fournisseurProduit;
     }
 
-    public int getIdFss() {
-        return idFss;
+    public int getIdFournisseur() {
+        return idFournisseur;
     }
 
-    public void setIdFss(int idFss) {
+    public void setIdFournisseur(int idFournisseur) {
 
-        this.idFss = getFournisseurProduit().getIdFss();
+        this.idFournisseur = getFournisseurProduit().getIdFss();
     }
 }

@@ -75,7 +75,7 @@ public class FournisseurDAO {
             return null;
     }
     public Cursor getFournisseur(){
-        Cursor c = db.rawQuery("SELECT " + COLUMN_ID + " , " + COLUMN_NAME + " FROM " + FournisseurDAO.TABLE_FOURNISSEUR,null);
+        Cursor c = db.rawQuery("SELECT " + GestionnaireDAO.COLUMN_ID + " , " + COLUMN_NAME + " FROM " + FournisseurDAO.TABLE_FOURNISSEUR,null);
         if(c.getCount()>0){
             c.moveToFirst();
             return c;

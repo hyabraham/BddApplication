@@ -40,7 +40,6 @@ public class CreateFrigoActivity extends AppCompatActivity {
         dao.openWritable();
         dao.createFrigo(f);
         Log.i("CREATION Frigo ", "OK");
-
         dao.close();
     }
     public void createFridge(View v){
@@ -65,9 +64,9 @@ public class CreateFrigoActivity extends AppCompatActivity {
         temperature=Float.parseFloat(temp);
         GestionnaireDAO dao1=new GestionnaireDAO(this);
 
-        if(libelle!=""){
-            if(localisation!=""){
-                if(temp!=""){
+        if(!libelle.equals("")){
+            if(!localisation.equals("")){
+                if(!temp.equals("")){
                     if(dateCreation!=""){
 
                         SharedPreferences  prefs_ID= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -97,7 +96,6 @@ public class CreateFrigoActivity extends AppCompatActivity {
             Toast.makeText(CreateFrigoActivity.this, messageLibelleVide, Toast.LENGTH_SHORT).show();
             libelleFrigo.setBackgroundColor(Color.RED);
         }
-
     }
     public void cancelCreateFridge(View v){
         Intent homeIntent = new Intent(CreateFrigoActivity.this,HomeActivity.class);

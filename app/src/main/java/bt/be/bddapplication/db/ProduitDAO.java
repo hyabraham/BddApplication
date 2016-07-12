@@ -5,8 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.sql.Date;
-
 import bt.be.bddapplication.model.Produit;
 
 /**
@@ -67,7 +65,8 @@ public class ProduitDAO {
         cv.put(COLUMN_DATE_PEREMPTION,p.getDatePeremptionProduit().toString());
         cv.put(COLUMN_DATE_LIVRAISON,p.getDateLivraisonProduit().toString());
         cv.put(COLUMN_QTE_SEUIL,p.getQteSeuil());
-        cv.put(COLUMN_ID_FOURNISSEUR,p.getFournisseurProduit().getIdFss());
+        cv.put(COLUMN_ID_FOURNISSEUR,p.getIdFournisseur());
+       // cv.put(COLUMN_ID_FOURNISSEUR,p.getFournisseurProduit().getIdFournisseur());
         return db.insert(TABLE_PRODUIT,null,cv);
     }
 
@@ -84,6 +83,15 @@ public class ProduitDAO {
             return null;
     }
 
+    public Cursor getProduit(){
+        Cursor c = db.rawQuery("SELECT " + ProduitDAO.COLUMN_ID + " , " + COLUMN_LIBELLE + " FROM " + ProduitDAO.TABLE_PRODUIT,null);
+        if(c.getCount()>0){
+            c.moveToFirst();
+            return c;
+        }else
+            return null;
+    }
+
     public static Produit cursorToProduit(Cursor c){
         Produit p =new Produit();
         p.setIdProduit(c.getInt(c.getColumnIndex(COLUMN_ID)));
@@ -92,7 +100,7 @@ public class ProduitDAO {
         p.setQteSeuil(c.getInt(c.getColumnIndex(COLUMN_QTE_SEUIL)));
         p.setDateLivraisonProduit(c.getString(c.getColumnIndex(COLUMN_DATE_LIVRAISON)));
         p.setDatePeremptionProduit(c.getString(c.getColumnIndex(COLUMN_DATE_PEREMPTION)));
-        p.setIdFss(c.getInt(c.getColumnIndex(COLUMN_ID_FOURNISSEUR)));
+        p.setIdFournisseur(c.getInt(c.getColumnIndex(COLUMN_ID_FOURNISSEUR)));
         return p;
     }
 
@@ -115,7 +123,7 @@ public class ProduitDAO {
         cv.put(COLUMN_QTE_SEUIL,p.getQteSeuil());
         cv.put(COLUMN_DATE_LIVRAISON,p.getDateLivraisonProduit().toString());
         cv.put(COLUMN_DATE_PEREMPTION,p.getDatePeremptionProduit().toString());
-        cv.put(COLUMN_ID_FOURNISSEUR,p.getIdFss());
+        cv.put(COLUMN_ID_FOURNISSEUR,p.getIdFournisseur());
         return db.update(TABLE_PRODUIT,cv, COLUMN_ID + "=" + p.getIdProduit(),null);
     }
     public void deleteProduit(Produit p) {

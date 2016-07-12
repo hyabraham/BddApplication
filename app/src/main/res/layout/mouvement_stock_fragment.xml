@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_mouvement_stock">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        style="@style/MyDisplay"
+        android:layout_marginTop="16dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_date_mvt"
+        android:inputType="date"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/motif_mouvement"
+        style="@style/MyDisplay"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_justification"
+        android:inputType="text"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frigo"
+        style="@style/MyDisplay"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spiner_frigo_mouvement">
+
+    </Spinner>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/libelle_produit"
+        style="@style/MyDisplay"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spiner_mouvement_produit">
+
+    </Spinner>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/qte"
+        style="@style/MyDisplay"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_qte_mouvement"
+        android:inputType="number"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_valider"
+            style="@style/MyButtonProject"
+            android:layout_marginLeft="64dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/valider"
+            android:onClick="onValidateMouvement"
+            android:layout_gravity="center_horizontal"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_cansel_register"
+            style="@style/MyButtonProject"
+            android:layout_marginLeft="64dp"
+            android:layout_marginBottom="32dp"
+            android:onClick="onCancelMouvement"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
