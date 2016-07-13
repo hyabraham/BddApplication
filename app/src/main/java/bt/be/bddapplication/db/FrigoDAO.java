@@ -77,7 +77,13 @@ public class FrigoDAO {
         return db.insert(TABLE_FRIGO,null,cv);
     }
 
-
+    public long createEstStocker(int IDProduit, int IDFrigo, int qte){
+        ContentValues cv = new ContentValues();
+        cv.put(FrigoDAO.COLUMN_ID,IDFrigo);
+        cv.put(ProduitDAO.COLUMN_ID,IDProduit);
+        cv.put(COLUMN_QTE_STOCK,qte);
+        return db.insert(TABLE_EST_STOCKER,null,cv);
+    }
 
     public Cursor getFrigoCursorById(int frigoID) {
         Cursor c = db.query(TABLE_FRIGO, null, COLUMN_ID + "=" + frigoID, null, null, null, null);
@@ -91,7 +97,7 @@ public class FrigoDAO {
     }
 
     public Cursor getFrigo(){
-        Cursor c = db.rawQuery("SELECT " + FrigoDAO.COLUMN_ID + " , " + COLUMN_NOM_FRIGO + " FROM " + FournisseurDAO.TABLE_FOURNISSEUR,null);
+        Cursor c = db.rawQuery("SELECT " + FrigoDAO.COLUMN_ID + " , " + COLUMN_NOM_FRIGO + " FROM " + FrigoDAO.TABLE_FRIGO,null);
         if(c.getCount()>0){
             c.moveToFirst();
             return c;
@@ -138,8 +144,25 @@ public class FrigoDAO {
     public void misAjourStock(int idfrgo,int idproduit, int qte){
         //Cursor c = db.rawQuery("UPDATE " + FrigoDAO.TABLE_EST_STOCKER + " SET " + FrigoDAO.COLUMN_QTE_STOCK + " = " + qte +" WHERE "+ FrigoDAO.COLUMN_ID +"= ? and " + ProduitDAO.COLUMN_ID +"= ?" , new String[]{idfrgo,idproduit});
         ContentValues cv = new ContentValues();
-        cv.put(FrigoDAO.COLUMN_QTE_STOCK,FrigoDAO.COLUMN_QTE_STOCK + qte);
+        cv.put(FrigoDAO.COLUMN_QTE_STOCK, qte);
         String where = Integer.toString(idfrgo)+ " = "+ Integer.toString(idproduit);
         db.update(FrigoDAO.TABLE_EST_STOCKER,cv, where, new String[]{});
+    }
+    public int getQteStock(int IDFrigo, int IDProduit){
+        Cursor c = db.rawQuery("SELECT " + FrigoDAO.COLUMN_QTE_STOCK + " FROM " + FrigoDAO.TABLE_EST_STOCKER +
+                " WHERE " + FrigoDAO.COLUMN_ID + " = ? AND " + ProduitDAO.COLUMN_ID + " = ?", new String[]{Integer.toString(IDFrigo),Integer.toString(IDProduit)});
+        if(c!=null) {
+            return c.getInt(c.getColumnIndex(FrigoDAO.COLUMN_QTE_STOCK));
+        }else
+            return 0;
+    }
+
+    public Boolean checkEstStocker(int IDFrigo, int IDProduit){
+
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_EST_STOCKER + " WHERE "+ COLUMN_ID +"= ? AND "
+                + ProduitDAO.COLUMN_ID + " = ? ", new String[]{Integer.toString(IDFrigo),Integer.toString(IDProduit)});
+        if(c.getCount()>0){
+            return true;
+        }else{return false;}
     }
 }

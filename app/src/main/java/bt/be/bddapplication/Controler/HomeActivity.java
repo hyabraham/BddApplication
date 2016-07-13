@@ -39,4 +39,8 @@ public class HomeActivity extends AppCompatActivity {
         Intent productIntent = new Intent(HomeActivity.this, CreateProductActivity.class);
         startActivity(productIntent);
     }
+    public void gotoMouvementStock(View v){
+        Intent mouvementStockIntent = new Intent(HomeActivity.this, MouvementStockActivity.class);
+        startActivity(mouvementStockIntent);
+    }
 }

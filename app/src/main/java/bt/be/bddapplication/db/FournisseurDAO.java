@@ -55,13 +55,13 @@ public class FournisseurDAO {
 
     public long createFournisser(Fournisseur f){
         ContentValues cv=new ContentValues();
-        cv.put(COLUMN_NAME,f.getNomFss());
-        cv.put(COLUMN_EMAIL,f.getEmailFss());
-        cv.put(COLUMN_ADRESSE,f.getAdresseFss());
+        cv.put(COLUMN_NAME,f.getNomFournisseur());
+        cv.put(COLUMN_EMAIL,f.getEmailFournisseur());
+        cv.put(COLUMN_ADRESSE,f.getAdresseFournisseur());
         return db.insert(TABLE_FOURNISSEUR,null,cv);
     }
     public void deleteFournisseur(Fournisseur f) {
-        db.delete(TABLE_FOURNISSEUR, COLUMN_ID + "=" + f.getIdFss(), null);
+        db.delete(TABLE_FOURNISSEUR, COLUMN_ID + "=" + f.getIdFournisseur(), null);
     }
 
     public Cursor getFssCursorById(int fssId) {
@@ -75,7 +75,7 @@ public class FournisseurDAO {
             return null;
     }
     public Cursor getFournisseur(){
-        Cursor c = db.rawQuery("SELECT " + GestionnaireDAO.COLUMN_ID + " , " + COLUMN_NAME + " FROM " + FournisseurDAO.TABLE_FOURNISSEUR,null);
+        Cursor c = db.rawQuery("SELECT " + FournisseurDAO.COLUMN_ID + " , " + COLUMN_NAME + " FROM " + FournisseurDAO.TABLE_FOURNISSEUR,null);
         if(c.getCount()>0){
             c.moveToFirst();
             return c;
@@ -93,10 +93,10 @@ public class FournisseurDAO {
 
     public static Fournisseur cursorToUser(Cursor c){
         Fournisseur f =new Fournisseur();
-        f.setIdFss(c.getInt(c.getColumnIndex(COLUMN_ID)));
-        f.setNomFss(c.getString(c.getColumnIndex(COLUMN_NAME)));
-        f.setAdresseFss(c.getString(c.getColumnIndex(COLUMN_ADRESSE)));
-        f.setEmailFss(c.getString(c.getColumnIndex(COLUMN_EMAIL)));
+        f.setIdFournisseur(c.getInt(c.getColumnIndex(COLUMN_ID)));
+        f.setNomFournisseur(c.getString(c.getColumnIndex(COLUMN_NAME)));
+        f.setAdresseFournisseur(c.getString(c.getColumnIndex(COLUMN_ADRESSE)));
+        f.setEmailFournisseur(c.getString(c.getColumnIndex(COLUMN_EMAIL)));
         return f;
     }
 
@@ -114,16 +114,16 @@ public class FournisseurDAO {
     public int update(Fournisseur f){
 
         ContentValues cv =new ContentValues();
-        cv.put(COLUMN_NAME,f.getNomFss());
-        cv.put(COLUMN_ADRESSE,f.getAdresseFss());
-        cv.put(COLUMN_EMAIL,f.getEmailFss());
+        cv.put(COLUMN_NAME,f.getNomFournisseur());
+        cv.put(COLUMN_ADRESSE,f.getAdresseFournisseur());
+        cv.put(COLUMN_EMAIL,f.getEmailFournisseur());
 
-        return db.update(TABLE_FOURNISSEUR,cv, COLUMN_ID + "=" + f.getIdFss(),null);
+        return db.update(TABLE_FOURNISSEUR,cv, COLUMN_ID + "=" + f.getIdFournisseur(),null);
     }
 
     public void delete(Fournisseur f){
 
-        db.delete(TABLE_FOURNISSEUR,COLUMN_ID + "=" + f.getIdFss(),null);
+        db.delete(TABLE_FOURNISSEUR,COLUMN_ID + "=" + f.getIdFournisseur(),null);
     }
 
 }

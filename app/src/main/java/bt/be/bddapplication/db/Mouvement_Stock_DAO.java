@@ -26,8 +26,7 @@ public class Mouvement_Stock_DAO {
             +"("+ Mouvement_Stock_DAO.COLUMN_ID_MOUVEMENT + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Mouvement_Stock_DAO.COLUMN_TYPE + " TEXT NOT NULL, "
             + Mouvement_Stock_DAO.COLUMN_DESCRIPTION + " TEXT NOT NULL,"
-            + Mouvement_Stock_DAO.COLUMN_DATE_MOUVEMENT + " TEXT NOT NULL,"
-            + FrigoDAO.COLUMN_DATE_CREATION + " TEXT NOT NULL"+");";
+            + Mouvement_Stock_DAO.COLUMN_DATE_MOUVEMENT + " TEXT NOT NULL);";
 
     public static final String CREATE_REQUEST_PRODUIT_MOUVEMENT="CREATE TABLE "+ Mouvement_Stock_DAO.TABLE_PORTE_SUR
             + "(" + Mouvement_Stock_DAO.COLUMN_QTE_MOUVEMENT + " INTEGER NOT NULL ,"
@@ -49,6 +48,8 @@ public class Mouvement_Stock_DAO {
     public Mouvement_Stock_DAO openWritable(){
         dbHelper=new DBHelper(context);
         db=dbHelper.getWritableDatabase();
+
+        //dbHelper.onUpgrade(db, 3, 4);
         return this;
     }
 
@@ -75,16 +76,16 @@ public class Mouvement_Stock_DAO {
     public long createMouvement(Mouvement_Stock mouvementStock){
         ContentValues cv1 = new ContentValues();
 
-        cv1.put(COLUMN_TYPE,mouvementStock.getTypeMvt());
-        cv1.put(COLUMN_DESCRIPTION,mouvementStock.getDescriptionMvt());
-        cv1.put(COLUMN_DATE_MOUVEMENT,mouvementStock.getDateMvt().toString());
+        cv1.put(COLUMN_TYPE,mouvementStock.getTypeMouvement());
+        cv1.put(COLUMN_DESCRIPTION,mouvementStock.getJustificationMouvement());
+        cv1.put(COLUMN_DATE_MOUVEMENT,mouvementStock.getDateMouvement().toString());
         return db.insert(TABLE_MOUVEMENT_STOCK, null, cv1);
     }
-    // La méthode "createMouvement" permet d'inserer les donnée dans la table "Porte_Sur"
+    // La méthode "createPorteSur" permet d'inserer les donnée dans la table "Porte_Sur"
     public long createPorteSur(Mouvement_Stock mouvementStock, Produit produit,int qte){
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID_MOUVEMENT,mouvementStock.getIdMvt());
+        cv.put(COLUMN_ID_MOUVEMENT,mouvementStock.getIdMouvement());
         cv.put(ProduitDAO.COLUMN_ID,produit.getIdProduit());
         cv.put(COLUMN_QTE_MOUVEMENT,qte);
         return db.insert(TABLE_PORTE_SUR,null,cv);
@@ -92,15 +93,13 @@ public class Mouvement_Stock_DAO {
 
     public static Mouvement_Stock cursorToMovement_Stock(Cursor c){
         Mouvement_Stock ms =new Mouvement_Stock();
-        ms.setIdMvt(c.getInt(c.getColumnIndex(COLUMN_ID_MOUVEMENT)));
-        ms.setTypeMvt(c.getString(c.getColumnIndex(COLUMN_TYPE)));
-        ms.setDescriptionMvt(c.getString(c.getColumnIndex(COLUMN_DESCRIPTION)));
-        ms.setDateMvt(c.getString(c.getColumnIndex(COLUMN_DATE_MOUVEMENT)));
+        ms.setIdMouvement(c.getInt(c.getColumnIndex(COLUMN_ID_MOUVEMENT)));
+        ms.setTypeMouvement(c.getString(c.getColumnIndex(COLUMN_TYPE)));
+        ms.setJustificationMouvement(c.getString(c.getColumnIndex(COLUMN_DESCRIPTION)));
+        ms.setDateMouvement(c.getString(c.getColumnIndex(COLUMN_DATE_MOUVEMENT)));
 
         return ms;
     }
-
-
 
 
 }

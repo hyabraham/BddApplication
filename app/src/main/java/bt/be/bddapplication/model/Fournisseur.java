@@ -4,58 +4,58 @@ package bt.be.bddapplication.model;
  * Created by rome03 on 6/07/2016.
  */
 public class Fournisseur {
-    private  int idFss;
-    private String nomFss;
-    private String emailFss;
-    private String adresseFss;
+    private  int idFournisseur;
+    private String nomFournisseur;
+    private String emailFournisseur;
+    private String adresseFournisseur;
 
     public Fournisseur() {}
 
     public Fournisseur(String nom, String mail) {
-        this.emailFss=mail;
-        this.nomFss=nom;
+        this.emailFournisseur =mail;
+        this.nomFournisseur =nom;
     }
 
     public Fournisseur(String nom, String mail, String adresse) {
-        this.nomFss=nom;
-        this.emailFss=mail;
-        this.adresseFss=adresse;
+        this.nomFournisseur =nom;
+        this.emailFournisseur =mail;
+        this.adresseFournisseur =adresse;
     }
 
-    public int getIdFss() {
-        return idFss;
+    public int getIdFournisseur() {
+        return idFournisseur;
     }
 
-    public void setIdFss(int idFss) {
-        this.idFss = idFss;
+    public void setIdFournisseur(int idFournisseur) {
+        this.idFournisseur = idFournisseur;
     }
 
-    public String getAdresseFss() {
-        return adresseFss;
+    public String getAdresseFournisseur() {
+        return adresseFournisseur;
     }
 
-    public void setAdresseFss(String adresseFss) {
-        this.adresseFss = adresseFss;
+    public void setAdresseFournisseur(String adresseFournisseur) {
+        this.adresseFournisseur = adresseFournisseur;
     }
 
-    public String getEmailFss() {
-        return emailFss;
+    public String getEmailFournisseur() {
+        return emailFournisseur;
     }
 
-    public void setEmailFss(String emailFss) {
-        this.emailFss = emailFss;
+    public void setEmailFournisseur(String emailFournisseur) {
+        this.emailFournisseur = emailFournisseur;
     }
 
-    public String getNomFss() {
-        return nomFss;
+    public String getNomFournisseur() {
+        return nomFournisseur;
     }
 
-    public void setNomFss(String nomFss) {
-        this.nomFss = nomFss;
+    public void setNomFournisseur(String nomFournisseur) {
+        this.nomFournisseur = nomFournisseur;
     }
 
     public String toString() {
 
-        return String.format("[%s] %s %s - %s", idFss, nomFss, emailFss, adresseFss);
+        return String.format("[%s] %s %s - %s", idFournisseur, nomFournisseur, emailFournisseur, adresseFournisseur);
     }
 }

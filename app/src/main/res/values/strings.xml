@@ -36,5 +36,11 @@
     <string name="frigo">Fridge</string>
     <string name="qte">Quantity</string>
     <string name="valider">Validate</string>
+    <string name="type_mouvement">Type of mouvement</string>
+    <string name="entre">Entry</string>
+    <string name="sortie">Out</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

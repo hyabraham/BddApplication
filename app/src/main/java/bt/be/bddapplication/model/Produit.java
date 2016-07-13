@@ -25,6 +25,13 @@ public class Produit {
         this.dateLivraisonProduit=dateLiv;
         this.qteSeuil=seuil;
     }
+    public Produit(String libelle, String description, Date dateLiv,Date dateperemption, int seuil){
+        this.libelleProduit=libelle;
+        this.descriptionProduit=description;
+        this.datePeremptionProduit=dateperemption;
+        this.dateLivraisonProduit=dateLiv;
+        this.qteSeuil=seuil;
+    }
 
     public int getIdProduit() {
         return idProduit;
@@ -90,6 +97,6 @@ public class Produit {
 
     public void setIdFournisseur(int idFournisseur) {
 
-        this.idFournisseur = getFournisseurProduit().getIdFss();
+        this.idFournisseur = idFournisseur;
     }
 }

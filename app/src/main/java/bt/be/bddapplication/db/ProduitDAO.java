@@ -12,7 +12,7 @@ import bt.be.bddapplication.model.Produit;
  */
 public class ProduitDAO {
     public static final String TABLE_PRODUIT="PRODUIT";
-    public static final String TABLE_EST_STOCKER="FRIGO_PRODUIT";
+    //public static final String TABLE_EST_STOCKER="FRIGO_PRODUIT";
 
     public static final String COLUMN_ID="IDProduit";
     public static final String COLUMN_ID_FRIGO="IDFrigo";

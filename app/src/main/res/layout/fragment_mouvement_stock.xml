@@ -7,13 +7,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/type_mouvement"
+        style="@style/MyDisplay"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_type_mouvement">
+
+    </Spinner>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/date"
         style="@style/MyDisplay"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="8dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_date_mvt"
+        android:id="@+id/txt_date_mouvement"
         android:inputType="date"/>
     <TextView
         android:layout_width="wrap_content"
@@ -65,6 +76,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_valider"
             style="@style/MyButtonProject"
+            android:layout_marginTop="64dp"
             android:layout_marginLeft="64dp"
             android:layout_marginBottom="32dp"
             android:text="@string/valider"
@@ -76,6 +88,7 @@
             android:text="@string/user_cansel_register"
             style="@style/MyButtonProject"
             android:layout_marginLeft="64dp"
+            android:layout_marginTop="64dp"
             android:layout_marginBottom="32dp"
             android:onClick="onCancelMouvement"
             android:layout_gravity="center_horizontal"/>

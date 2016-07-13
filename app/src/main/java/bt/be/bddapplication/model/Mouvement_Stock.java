@@ -9,52 +9,58 @@ import java.util.Date;
  */
 public class Mouvement_Stock {
 
-    private int idMvt;
-    private String typeMvt;
-    private String descriptionMvt;
-    private Date dateMvt;
+    private int idMouvement;
+    private String typeMouvement;
+    private String justificationMouvement;
+    private Date dateMouvement;
     private ArrayMap<Integer, Integer> listMvt;
     private int qtt;
     public Mouvement_Stock(){}
 
     public  Mouvement_Stock(int id, String type, String description, Date date){
-        this.idMvt=id;
-        this.typeMvt=type;
-        this.descriptionMvt=description;
-        this.dateMvt=date;
+        this.idMouvement =id;
+        this.typeMouvement =type;
+        this.justificationMouvement =description;
+        this.dateMouvement =date;
+    }
+    public  Mouvement_Stock(String type, String description, Date date){
+
+        this.typeMouvement =type;
+        this.justificationMouvement =description;
+        this.dateMouvement =date;
     }
 
-    public int getIdMvt() {
-        return idMvt;
+    public int getIdMouvement() {
+        return idMouvement;
     }
 
-    public void setIdMvt(int idMvt) {
-        this.idMvt = idMvt;
+    public void setIdMouvement(int idMouvement) {
+        this.idMouvement = idMouvement;
     }
 
-    public String getTypeMvt() {
-        return typeMvt;
+    public String getTypeMouvement() {
+        return typeMouvement;
     }
 
-    public void setTypeMvt(String typeMvt) {
-        this.typeMvt = typeMvt;
+    public void setTypeMouvement(String typeMouvement) {
+        this.typeMouvement = typeMouvement;
     }
 
-    public String getDescriptionMvt() {
-        return descriptionMvt;
+    public String getJustificationMouvement() {
+        return justificationMouvement;
     }
 
-    public void setDescriptionMvt(String descriptionMvt) {
-        this.descriptionMvt = descriptionMvt;
+    public void setJustificationMouvement(String justificationMouvement) {
+        this.justificationMouvement = justificationMouvement;
     }
 
-    public Date getDateMvt() {
-        return dateMvt;
+    public Date getDateMouvement() {
+        return dateMouvement;
     }
 
-    public void setDateMvt(String dateMvt) {
-        Date datemvt=new Date(dateMvt);
-        this.dateMvt = datemvt;
+    public void setDateMouvement(String dateMouvement) {
+        Date datemvt=new Date(dateMouvement);
+        this.dateMouvement = datemvt;
     }
 
     public ArrayMap<Integer, Integer> getListMvt() {
@@ -63,6 +69,6 @@ public class Mouvement_Stock {
 
     public void setListMvt(ArrayMap<Integer, Integer> listMvt) {
 
-        this.listMvt.put(idMvt,qtt);
+        this.listMvt.put(idMouvement,qtt);
     }
 }

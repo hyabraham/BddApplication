@@ -21,7 +21,7 @@
         <activity android:name=".Controler.CreateProviderActivity" />
         <activity android:name=".Controler.CreateFrigoActivity" />
         <activity android:name=".Controler.CreateProductActivity" />
-        <activity android:name=".Controler.SortieStockActivity"></activity>
+        <activity android:name=".Controler.MouvementStockActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package bt.be.bddapplication.Controler;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,9 +39,11 @@ public class CreateProductActivity extends AppCompatActivity {
         Cursor c= daoFournisseur.getFournisseur();
         //cette boucle me petmet de recuperer les noms des founisseurs pour peupler mon spinner
         List<String> fournisseur = new ArrayList<String>();
-        do {
-            fournisseur.add(c.getString(c.getColumnIndex(FournisseurDAO.COLUMN_NAME)));
-        } while (c.moveToNext());
+        if(c != null && c.getCount() > 0){
+            do {
+                fournisseur.add(c.getString(c.getColumnIndex(FournisseurDAO.COLUMN_NAME)));
+            } while (c.moveToNext());
+        }
         daoFournisseur.close();
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, fournisseur);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -63,14 +66,14 @@ public class CreateProductActivity extends AppCompatActivity {
         daoFournisseur.openWritable();
         Cursor c= daoFournisseur.getFournisseur();
         HashMap<String,Integer> fournisseurHmap=new HashMap<>();
-        if(c.getCount() > 0) {
-            c.moveToFirst();
-            do {
-                fournisseurHmap.put(c.getString(c.getColumnIndex(FournisseurDAO.COLUMN_NAME)),
-                        c.getInt(c.getColumnIndex(GestionnaireDAO.COLUMN_ID)));
-                Log.i("CUSOR_ID", "" + c.getLong(c.getColumnIndex(GestionnaireDAO.COLUMN_ID))); // Le GestionnaireDAO.COLUMN_ID ici c'est FournisseurDAO.COLUMN_ID
-                //erreur a corriger après
-            } while (c.moveToNext());
+        if(c != null && c.getCount() > 0){
+            if(c.getCount() > 0) {
+                c.moveToFirst();
+                do {
+                    fournisseurHmap.put(c.getString(c.getColumnIndex(FournisseurDAO.COLUMN_NAME)),
+                            c.getInt(c.getColumnIndex(FournisseurDAO.COLUMN_ID)));
+                } while (c.moveToNext());
+            }
         }
         daoFournisseur.close();
         String fss=selectionList();
@@ -131,5 +134,15 @@ public class CreateProductActivity extends AppCompatActivity {
             Toast.makeText(CreateProductActivity.this, messageLibelle, Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void cancle(View v){
+        Intent homeIntent = new Intent(CreateProductActivity.this,HomeActivity.class);
+        startActivity(homeIntent);
+    }
+
+    public void cancel(View v){
+        Intent homeIntent = new Intent(CreateProductActivity.this,HomeActivity.class);
+        startActivity(homeIntent);
     }
 }
