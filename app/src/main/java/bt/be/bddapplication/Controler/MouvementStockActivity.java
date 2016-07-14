@@ -179,7 +179,7 @@ public class MouvementStockActivity extends AppCompatActivity {
                                 Produit monProduit= ProduitDAO.cursorToProduit(cursorProduit);
                                 Mouvement_Stock monMouvement = new Mouvement_Stock(typeMouvement,justificationMouvement,new Date(dateDuMouvement));
                                 daoMouvement.createMouvement(monMouvement);
-                                daoMouvement.createPorteSur(monMouvement,monProduit,qteDemande);
+                               // daoMouvement.createPorteSur(monMouvement,monProduit,qteDemande);
                                 daoFrigo.close();
                                 Toast.makeText(MouvementStockActivity.this, "Mouvement succefull", Toast.LENGTH_SHORT).show();
                             }else {
@@ -195,7 +195,8 @@ public class MouvementStockActivity extends AppCompatActivity {
                                 monMouvement.setTypeMouvement(typeMouvement);
 
                                 Log.i("Mouvement",""+monMouvement.getTypeMouvement()+ " idMouvement " + monMouvement.getIdMouvement()+ " date :"+ monMouvement.getDateMouvement());
-                                daoMouvement.createMouvementOnProduit(monMouvement,monProduit,qteDemande);
+                                //daoMouvement.createMouvementOnProduit(monMouvement,monProduit,qteDemande);
+                                daoMouvement.createMouvement(monMouvement);
                                 Log.e("Creation Mouvement", "OK");
                                 daoFrigo.createEstStocker(recupIDProduit(produit),recupIDFrigo(frigo),qteDemande);
                                 daoFrigo.close();
@@ -212,7 +213,8 @@ public class MouvementStockActivity extends AppCompatActivity {
                                     Cursor cursorProduit = daoProduit.getProduitCursorById(recupIDProduit(produit));
                                     Produit monProduit = ProduitDAO.cursorToProduit(cursorProduit);
                                     Mouvement_Stock monMouvement = new Mouvement_Stock(typeMouvement, justificationMouvement, new Date(dateDuMouvement));
-                                    daoMouvement.createMouvementOnProduit(monMouvement, monProduit, qteDemande);
+                                   // daoMouvement.createMouvementOnProduit(monMouvement, monProduit, qteDemande);
+                                    daoMouvement.createMouvement(monMouvement);
                                     daoFrigo.close();
                                     Toast.makeText(MouvementStockActivity.this, "Mouvement succefull", Toast.LENGTH_SHORT).show();
                                 } else {

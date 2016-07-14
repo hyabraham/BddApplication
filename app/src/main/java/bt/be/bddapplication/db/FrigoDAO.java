@@ -145,7 +145,7 @@ public class FrigoDAO {
         //Cursor c = db.rawQuery("UPDATE " + FrigoDAO.TABLE_EST_STOCKER + " SET " + FrigoDAO.COLUMN_QTE_STOCK + " = " + qte +" WHERE "+ FrigoDAO.COLUMN_ID +"= ? and " + ProduitDAO.COLUMN_ID +"= ?" , new String[]{idfrgo,idproduit});
         ContentValues cv = new ContentValues();
         cv.put(FrigoDAO.COLUMN_QTE_STOCK, qte);
-        String where = Integer.toString(idfrgo)+ " = "+ Integer.toString(idproduit);
+        String where = Integer.toString(idfrgo)+ " = " + FrigoDAO.COLUMN_ID + " AND " + Integer.toString(idproduit) + " = " + ProduitDAO.COLUMN_ID;
         db.update(FrigoDAO.TABLE_EST_STOCKER,cv, where, new String[]{});
     }
     public int getQteStock(int IDFrigo, int IDProduit){
