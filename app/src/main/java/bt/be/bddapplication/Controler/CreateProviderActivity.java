@@ -21,39 +21,40 @@ public class CreateProviderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_provider);
     }
 
-    public boolean verifMail(String sMail){
-        boolean result= false;
-        for (int i=1; i<=sMail.length()-1;i++){
-            if (sMail.charAt(i)=='@'){
-                result=true;
+    // Cette méthode permet juste de vérivier si le mail contient un "@"
+    public boolean verifMail(String sMail) {
+        boolean result = false;
+        for (int i = 1; i <= sMail.length() - 1; i++) {
+            if (sMail.charAt(i) == '@') {
+                result = true;
             }
         }
         return result;
     }
 
-    public void onCancelProvider (View v){
-        Intent homeIntent = new Intent(CreateProviderActivity.this,HomeActivity.class);
+    public void onCancelProvider(View v) {
+        Intent homeIntent = new Intent(CreateProviderActivity.this, HomeActivity.class);
         startActivity(homeIntent);
     }
 
-    public void createProvider(View v){
-        String messageMailFail="Please enter a valid adress mail";
-        String messageEmptyField="This field can\'t be empty";
-        EditText name=(EditText)findViewById(R.id.txt_provider_name);
-        EditText adress=(EditText)findViewById(R.id.txt_provider_adress);
-        EditText email=(EditText)findViewById(R.id.txt_provider_mail);
+    public void createProvider(View v) {
+        String messageMailFail = "Please enter a valid adress mail";
+        String messageEmptyField = "This field can\'t be empty";
+        EditText name = (EditText) findViewById(R.id.txt_provider_name);
+        EditText adress = (EditText) findViewById(R.id.txt_provider_adress);
+        EditText email = (EditText) findViewById(R.id.txt_provider_mail);
 
-        String adressProvider,nameProvider,mailProvider;
-        nameProvider=name.getText().toString();
-        adressProvider=adress.getText().toString();
-        mailProvider=email.getText().toString();
+        String adressProvider, nameProvider, mailProvider;
+        nameProvider = name.getText().toString();
+        adressProvider = adress.getText().toString();
+        mailProvider = email.getText().toString();
 
-        if(nameProvider!=""){
-            if(adressProvider !=""){
-                if(mailProvider!=""){
-                    if (verifMail(mailProvider)){
-                        Fournisseur f = new Fournisseur(nameProvider, mailProvider,adressProvider);
-                        FournisseurDAO dao =new FournisseurDAO(this);
+        if (nameProvider != "") {
+            if (adressProvider != "") {
+                if (mailProvider != "") {
+                    if (verifMail(mailProvider)) {
+                        Fournisseur f = new Fournisseur(nameProvider, mailProvider, adressProvider);
+                        FournisseurDAO dao = new FournisseurDAO(this);
                         dao.openWritable();
                         dao.createFournisser(f);
                         Log.i("CREATION PROVIDER ", "OK");
@@ -61,22 +62,22 @@ public class CreateProviderActivity extends AppCompatActivity {
                         name.setText("");
                         adress.setText("");
                         email.setText("");
-                    }else {
+                    } else {
                         Toast.makeText(CreateProviderActivity.this, messageMailFail, Toast.LENGTH_SHORT).show();
                         adress.setBackgroundColor(Color.RED);
                         adress.setHint("Enter a correct email adress ");
                     }
-                }else{
+                } else {
                     Toast.makeText(CreateProviderActivity.this, messageEmptyField, Toast.LENGTH_SHORT).show();
                     adress.setBackgroundColor(Color.RED);
                     adress.setHint(messageEmptyField);
                 }
-            }else {
+            } else {
                 Toast.makeText(CreateProviderActivity.this, messageEmptyField, Toast.LENGTH_SHORT).show();
                 adress.setBackgroundColor(Color.RED);
                 adress.setHint(messageEmptyField);
             }
-        }else {
+        } else {
             Toast.makeText(CreateProviderActivity.this, messageEmptyField, Toast.LENGTH_SHORT).show();
             adress.setBackgroundColor(Color.RED);
             adress.setHint(messageEmptyField);

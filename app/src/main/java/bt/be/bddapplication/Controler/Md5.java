@@ -26,10 +26,11 @@ public class Md5 {
             byte[] messageDigest = md.digest(passBytes);
             BigInteger number = new BigInteger(1, messageDigest);
             this.code = number.toString(16);
-        } catch (NoSuchAlgorithmException e){
+        } catch (NoSuchAlgorithmException e) {
             throw new Error("invalid JRE: have not 'MD5' impl.", e);
         }
     }
+
     public String getCode() {
         return code;
     }
