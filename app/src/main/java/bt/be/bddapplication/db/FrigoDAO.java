@@ -152,6 +152,7 @@ public class FrigoDAO {
         Cursor c = db.rawQuery("SELECT " + FrigoDAO.COLUMN_QTE_STOCK + " FROM " + FrigoDAO.TABLE_EST_STOCKER +
                 " WHERE " + FrigoDAO.COLUMN_ID + " = ? AND " + ProduitDAO.COLUMN_ID + " = ?", new String[]{Integer.toString(IDFrigo),Integer.toString(IDProduit)});
         if(c!=null) {
+            c.moveToFirst();
             return c.getInt(c.getColumnIndex(FrigoDAO.COLUMN_QTE_STOCK));
         }else
             return 0;
@@ -162,6 +163,7 @@ public class FrigoDAO {
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_EST_STOCKER + " WHERE "+ COLUMN_ID +"= ? AND "
                 + ProduitDAO.COLUMN_ID + " = ? ", new String[]{Integer.toString(IDFrigo),Integer.toString(IDProduit)});
         if(c.getCount()>0){
+            c.moveToFirst();
             return true;
         }else{return false;}
     }

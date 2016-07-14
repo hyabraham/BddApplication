@@ -17,16 +17,16 @@ public class Mouvement_Stock {
     private int qtt;
     public Mouvement_Stock(){}
 
-    public  Mouvement_Stock(int id, String type, String description, Date date){
+    public  Mouvement_Stock(int id, String type, String justification, Date date){
         this.idMouvement =id;
         this.typeMouvement =type;
-        this.justificationMouvement =description;
+        this.justificationMouvement = justification;
         this.dateMouvement =date;
     }
-    public  Mouvement_Stock(String type, String description, Date date){
+    public  Mouvement_Stock(String type, String justification, Date date){
 
         this.typeMouvement =type;
-        this.justificationMouvement =description;
+        this.justificationMouvement = justification;
         this.dateMouvement =date;
     }
 

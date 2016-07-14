@@ -80,6 +80,7 @@ public class Mouvement_Stock_DAO {
         cv1.put(COLUMN_DESCRIPTION,mouvementStock.getJustificationMouvement());
         cv1.put(COLUMN_DATE_MOUVEMENT,mouvementStock.getDateMouvement().toString());
         return db.insert(TABLE_MOUVEMENT_STOCK, null, cv1);
+
     }
     // La méthode "createPorteSur" permet d'inserer les donnée dans la table "Porte_Sur"
     public long createPorteSur(Mouvement_Stock mouvementStock, Produit produit,int qte){

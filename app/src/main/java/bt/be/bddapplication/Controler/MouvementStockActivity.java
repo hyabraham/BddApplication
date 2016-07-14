@@ -123,7 +123,7 @@ public class MouvementStockActivity extends AppCompatActivity {
         daoFrigo.openWritable();
         Cursor c= daoFrigo.getFrigo();
         HashMap<String,Integer> frigoHmap =new HashMap<>();
-        if(c.getCount() > 0) {
+        if(c!=null && c.getCount() > 0) {
             c.moveToFirst();
             do {
                 frigoHmap.put(c.getString(c.getColumnIndex(FrigoDAO.COLUMN_NOM_FRIGO)),
@@ -173,16 +173,18 @@ public class MouvementStockActivity extends AppCompatActivity {
                             if(daoFrigo.checkEstStocker(recupIDFrigo(frigo),recupIDProduit(produit))){
                                 Log.i("Result CHeck Estocker",""+daoFrigo.checkEstStocker(recupIDFrigo(frigo),recupIDProduit(produit)));
                                 int qteMAJ= daoFrigo.getQteStock(recupIDFrigo(frigo),recupIDProduit(produit))+qteDemande;
+                                Log.e("qteMAJ",""+ qteMAJ);
                                 daoFrigo.misAjourStock(recupIDFrigo(frigo),recupIDProduit(produit),qteMAJ);
                                 Cursor cursorProduit =daoProduit.getProduitCursorById(recupIDProduit(produit));
                                 Produit monProduit= ProduitDAO.cursorToProduit(cursorProduit);
                                 Mouvement_Stock monMouvement = new Mouvement_Stock(typeMouvement,justificationMouvement,new Date(dateDuMouvement));
-                                daoMouvement.createMouvementOnProduit(monMouvement,monProduit,qteDemande);
+                                daoMouvement.createMouvement(monMouvement);
+                                daoMouvement.createPorteSur(monMouvement,monProduit,qteDemande);
                                 daoFrigo.close();
                                 Toast.makeText(MouvementStockActivity.this, "Mouvement succefull", Toast.LENGTH_SHORT).show();
                             }else {
                                 Log.i("ligne stok", "OK");
-                                daoFrigo.misAjourStock(recupIDFrigo(frigo),recupIDProduit(produit),qteDemande);
+                                //daoFrigo.misAjourStock(recupIDFrigo(frigo),recupIDProduit(produit),qteDemande);
                                 Cursor cursorProduit =daoProduit.getProduitCursorById(recupIDProduit(produit));
                                 Produit monProduit= ProduitDAO.cursorToProduit(cursorProduit);
                                 Log.i("produit recup",""+monProduit.getIdProduit());
@@ -202,17 +204,22 @@ public class MouvementStockActivity extends AppCompatActivity {
                         }else { //cas de sortie en stock
                             FrigoDAO daoFrigo = new FrigoDAO(this);
                             daoFrigo.openWritable();
-                            if(daoFrigo.getQteStock(recupIDFrigo(frigo),recupIDProduit(produit))>=qteDemande) {
-                                int qteMAJ= daoFrigo.getQteStock(recupIDFrigo(frigo),recupIDProduit(produit))- qteDemande;;//sortie de stock la qte doit etre décrementé
-                                daoFrigo.misAjourStock(recupIDFrigo(frigo),recupIDProduit(produit),qteMAJ);
-                                Cursor cursorProduit =daoProduit.getProduitCursorById(recupIDProduit(produit));
-                                Produit monProduit= ProduitDAO.cursorToProduit(cursorProduit);
-                                Mouvement_Stock monMouvement = new Mouvement_Stock(typeMouvement,justificationMouvement,new Date(dateDuMouvement));
-                                daoMouvement.createMouvementOnProduit(monMouvement,monProduit,qteDemande);
-                                daoFrigo.close();
-                                Toast.makeText(MouvementStockActivity.this, "Mouvement succefull", Toast.LENGTH_SHORT).show();
-                            }else {
-                                Toast.makeText(MouvementStockActivity.this, "No more Product. The actual stock is : "+ daoFrigo.getQteStock(recupIDFrigo(frigo),recupIDProduit(produit)), Toast.LENGTH_SHORT).show();
+                            if (daoFrigo.checkEstStocker(recupIDFrigo(frigo), recupIDProduit(produit))) {
+                                if (daoFrigo.getQteStock(recupIDFrigo(frigo), recupIDProduit(produit)) >= qteDemande) {
+                                    int qteMAJ = daoFrigo.getQteStock(recupIDFrigo(frigo), recupIDProduit(produit)) - qteDemande;
+                                    ;//sortie de stock la qte doit etre décrementé
+                                    daoFrigo.misAjourStock(recupIDFrigo(frigo), recupIDProduit(produit), qteMAJ);
+                                    Cursor cursorProduit = daoProduit.getProduitCursorById(recupIDProduit(produit));
+                                    Produit monProduit = ProduitDAO.cursorToProduit(cursorProduit);
+                                    Mouvement_Stock monMouvement = new Mouvement_Stock(typeMouvement, justificationMouvement, new Date(dateDuMouvement));
+                                    daoMouvement.createMouvementOnProduit(monMouvement, monProduit, qteDemande);
+                                    daoFrigo.close();
+                                    Toast.makeText(MouvementStockActivity.this, "Mouvement succefull", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(MouvementStockActivity.this, "No more Product. The actual stock is : " + daoFrigo.getQteStock(recupIDFrigo(frigo), recupIDProduit(produit)), Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                Toast.makeText(MouvementStockActivity.this, "This product does'nt exist in this frigde", Toast.LENGTH_SHORT).show();
                             }
                         }
                         daoMouvement.close();
