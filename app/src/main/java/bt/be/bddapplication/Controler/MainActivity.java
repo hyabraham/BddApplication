@@ -56,55 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String maLocalisation() {
-
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        ArrayList<LocationProvider> providers = new ArrayList<LocationProvider>();
-        ArrayList<String> names = (ArrayList<String>) locationManager.getProviders(true);
-
-        for (String name : names) {
-            providers.add(locationManager.getProvider(name));
-        }
-        Criteria critere = new Criteria();
-        critere.setAccuracy(Criteria.ACCURACY_FINE);
-        critere.setAltitudeRequired(true);
-        critere.setBearingRequired(true);
-        critere.setCostAllowed(false);
-        critere.setPowerRequirement(Criteria.POWER_HIGH);
-        critere.setSpeedRequired(true);
-        Log.i("Provider", providers.toString());
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            return null;
-        }
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        Log.e("LOCATION_KNOW => ", "LATITUDE: " + location.getLatitude() + "; LONGITUDE: " + location.getLongitude());
-        String localisation = "Latitude : " + location.getLatitude() + "," + " Longitude :" + location.getLongitude();
-
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                Log.e("LOCATION_UPDATE => ", "LATITUDE: " + location.getLatitude() + "; LONGITUDE: " + location.getLongitude());
-            }
-
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String s) {
-
-            }
-        });
-        return localisation;
-    }
-
     public void logUser(View v) {
         // String maLocation=maLocalisation();
         String mdpToCompare = ""; //Mot de passe à comparer avec celui de la base de donnée.
@@ -135,9 +86,6 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = pref_Id_Gestionnaire.edit();
             editor.putInt("id", g.getId());
             editor.apply();
-            String messagePosition = maLocalisation();
-            Log.e("Position", "" + messagePosition);
-            Toast.makeText(MainActivity.this, messagePosition, Toast.LENGTH_SHORT).show();
             startActivity(homeActivityIntent);
         } else {
             Toast.makeText(MainActivity.this, "E-mail and Password not matching", Toast.LENGTH_SHORT).show();

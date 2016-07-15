@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gestock</string>
+    <string name="create">Creer</string>
+    <string name="date">Date</string>
+    <string name="date_expiration">Date de péremption</string>
+    <string name="date_livraison">Date de livraison</string>
+    <string name="description_produit">Description du produit</string>
+    <string name="entre">Entrée en Stock</string>
+    <string name="fournisseur">Fournisseur</string>
+    <string name="frigo">Frigo</string>
+    <string name="gest_frigo">Selectionner le gestionnaire</string>
+    <string name="gestionnaire_frigo">Crée par</string>
+    <string name="hint_password">Entrer votre mot de passe</string>
+    <string name="hint_username">Entrer votre adresse mail</string>
+    <string name="home_config">Paramettrage</string>
+    <string name="home_create_frigo">Créer Frigo</string>
+    <string name="home_create_product">Créer Produit</string>
+    <string name="home_create_provider">Créer Fournisseur</string>
+    <string name="home_mouvement">Mouvement de stock</string>
+    <string name="home_search">Rechercher</string>
+    <string name="home_stat">Statistiques</string>
+    <string name="libelle">Libellé produit</string>
+    <string name="libelle_produit">Libellé produit</string>
+    <string name="localisation">Localisation</string>
+    <string name="motif_mouvement">Justifications</string>
+    <string name="provider_adresse">Adresse</string>
+    <string name="provider_name">Nom</string>
+    <string name="qte">Quantité</string>
+    <string name="qteseuil">Quantité seuil</string>
+    <string name="sortie">Sortie de stock</string>
+    <string name="temperature">Température</string>
+    <string name="type_mouvement">Type de mouvement</string>
+    <string name="user_cansel_register">Annuler</string>
+    <string name="user_email">E-mail</string>
+    <string name="user_fname">Prénom</string>
+    <string name="user_lname">Nom de famille</string>
+    <string name="user_login">Se connecter</string>
+    <string name="user_password">Mot de passe</string>
+    <string name="user_register">S\'enregister</string>
+    <string name="user_repassorwd">Retaper votre mot de passe</string>
+    <string name="valider">Valider</string>
+</resources>

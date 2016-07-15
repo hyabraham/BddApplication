@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gestock</string>
+    <string name="app_name" translatable="false">Gestock</string>
     <string name="user_fname">FirstName</string>
     <string name="user_lname">LastName</string>
     <string name="user_password">Password</string>
