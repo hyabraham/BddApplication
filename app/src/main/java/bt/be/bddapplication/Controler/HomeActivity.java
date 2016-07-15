@@ -103,4 +103,8 @@ public class HomeActivity extends AppCompatActivity {
         Intent mouvementStockIntent = new Intent(HomeActivity.this, MouvementStockActivity.class);
         startActivity(mouvementStockIntent);
     }
+    public void gotoConfig(View v){
+        Intent configIntent = new Intent(HomeActivity.this, ConfigActivity.class);
+        startActivity(configIntent);
+    }
 }

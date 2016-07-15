@@ -39,6 +39,10 @@
     <string name="type_mouvement">Type of mouvement</string>
     <string name="entre">Entry</string>
     <string name="sortie">Out</string>
+    <string name="verif_stock">Check Stock</string>
+    <string name="modifier_produit">Update Product</string>
+    <string name="modifier_profil">Update profil</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
